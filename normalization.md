@@ -82,5 +82,5 @@ Database normalization is the process of organizing data in a database to reduce
 | PAY002     | B002       | $700   |
 
 ---
-
-This normalization ensures that the database is efficient, scalable, and free from anomalies. Let me know if you need further details or examples!
+## Conclusion
+The ALX Airbnb database is designed with normalization principles in mind to ensure efficient data management. By following these steps, the database minimizes redundancy, maintains data integrity, and enhances performance.
