@@ -126,4 +126,3 @@ The project involves:
 
 ---
 
-This README provides a clear and professional overview of the database design and its features. Let me know if you need further refinements!
