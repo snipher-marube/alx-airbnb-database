@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS User (
 );
 
 CREATE TABLE IF NOT EXISTS Property (
-    property_id SERIAL PRIMARY_KEY,
-    host_id FOREIGN_KEY REFERENCES User(user_id),
+    property_id SERIAL PRIMARY KEY,
+    host_id INT FOREIGN KEY REFERENCES User(user_id),
     name VARCHAR(100) NOT NULL,
     description TEXT NOT NULL,
     location VARCHAR(255) NOT NULL,
@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS Property (
 
 CREATE TABLE IF NOT EXISTS Booking (
     booking_id SERIAL PRIMARY KEY,
-    user_id FOREIGN_KEY REFERENCES User(user_id),
-    property_id FOREIGN_KEY REFERENCES Property(property_id),
+    user_id FOREIGN KEY REFERENCES User(user_id),
+    property_id FOREIGN KEY REFERENCES Property(property_id),
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     total_price DECIMAL(10, 2) NOT NULL,
@@ -32,25 +32,25 @@ CREATE TABLE IF NOT EXISTS Booking (
 )
 
 CREATE TABLE IF NOT EXISTS Payment (
-    payment_id SERIAL PRIMARY_KEY,
-    booking_id FOREIGN_KEY REFERENCES Booking(booking_id),
+    payment_id SERIAL PRIMARY KEY,
+    booking_id FOREIGN KEY REFERENCES Booking(booking_id),
     amount DECIMAL(10, 2) NOT NULL,
     payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     payment_method ENUM('credit_card', 'paypal', 'bank_transfer') NOT NULL,
 );
 
 CREATE TABLE IF NOT EXISTS Review (
-    review_id SERIAL PRIMARY_KEY,
-    property_id FOREIGN_KEY REFERENCES Property(property_id),
-    user_id FOREIGN_KEY REFERENCES User(user_id),
+    review_id SERIAL PRIMARY KEY,
+    property_id FOREIGN KEY REFERENCES Property(property_id),
+    user_id FOREIGN KEY REFERENCES User(user_id),
     rating INT CHECK (rating >= 1 AND rating <= 5) NOT NULL,
     comment TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 )
 
 CREATE TABLE IF NOT EXISTS Message (
-    message_id SERIAL PRIMARY_KEY,
-    sender_id FOREIGN_KEY REFERENCES User(user_id),
+    message_id SERIAL PRIMARY KEY,
+    sender_id FOREIGN KEY REFERENCES User(user_id),
     recipient_id FOREIGN_KEY REFERENCES User(user_id),
     message_body TEXT NOT NULL,
     sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
