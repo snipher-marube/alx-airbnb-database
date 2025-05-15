@@ -15,6 +15,7 @@ ORDER BY
 
 -- Rank properties by total bookings (Including properties with 0 bookings)
 SELECT
+    ROW_NUMBER() OVER (ORDER BY COUNT(b.booking_id) DESC) AS row_num,
     p.property_id,
     p.name AS property_name,
     COUNT(b.booking_id) AS total_bookings,
